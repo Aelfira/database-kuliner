@@ -1,5 +1,5 @@
 <?php 
-include "header.php";
+include_once "header.php";
 ?>
         <div class="content">
             <div class="container-fluid">
@@ -30,11 +30,12 @@ include "header.php";
                             <select name="kategori" class="form-control" id="kategori" required>
                                 <option value="">Pilih satu...</option>
                                 <?php 
-                                include "koneksi.php";
-                                $query = mysql_query("SELECT * FROM tabel_kategori") or die(mysql_error());
-                                while($kategori = mysql_fetch_array($query)) {
+                                include_once "koneksi.php";
+                                $oci = new oci;
+                                $query = $oci->query("SELECT * FROM tabel_kategori");
+                                while($kategori = $oci->fetch_array($query)) {
                                 ?>
-                                <option value="<?= $kategori['id_kategori'] ?>"><?= $kategori['kategori'] ?></option>
+                                <option value="<?= $kategori['ID_KATEGORI'] ?>"><?= $kategori['KATEGORI'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -75,5 +76,5 @@ include "header.php";
     <!-- AIzaSyDxSg93t62JEx66Buy0mZhOgN9jwXHB5Zo -->
 
 <?php 
-include "footer.php";
+include_once "footer.php";
 ?>

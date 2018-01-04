@@ -1,11 +1,13 @@
 <?php 
-include "header.php";
+include_once "header.php";
 ?>
 <?php 
-include 'koneksi.php';
+include_once 'koneksi.php';
 $id = $_GET['id'];
-$query = mysql_query("SELECT * FROM admin WHERE username = '$id'") or die(mysql_error());
-$admin = mysql_fetch_array($query);
+$oci = new oci;
+$query = $oci->query("SELECT * FROM admin WHERE username = '$id'");
+
+$admin = $oci->fetch_array($query);
 ?>  
 <div class="content">
     <div class="container-fluid">
@@ -29,5 +31,5 @@ $admin = mysql_fetch_array($query);
     </div>
 </div>
 <?php 
-include "footer.php";
+include_once "footer.php";
 ?>

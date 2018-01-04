@@ -1,8 +1,10 @@
 <?php 
-include 'koneksi.php';
+include_once 'koneksi.php';
 $id = $_POST['id'];
 $username= $_POST['username'];
 $password = $_POST['password'];
 
-$query = mysql_query("UPDATE admin SET username='$username', password='$password' WHERE username='$id'") or die(mysql_error());
+$oci = new oci;
+
+$query = $oci->query("UPDATE admin SET username='$username', password='$password' WHERE username='$id'");
 header('location: data-admin.php');
