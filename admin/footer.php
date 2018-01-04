@@ -47,12 +47,13 @@
 
 	<script type="text/javascript">
         <?php 
-        include 'koneksi.php';
+        include_once 'koneksi.php';
+        $oci = new oci;
         $hariIni = date('Y-m-d');
         for($i=0; $i<7; $i++) {
             $tgl = date('Y-m-d', strtotime($hariIni." - $i days"));
-            $query1 = mysql_query("SELECT count(*) as total FROM tabel_kuliner WHERE tgl_dibuat = '$tgl'") or die(mysql_error());
-            $kuliner = mysql_fetch_array($query1);
+            $query1 = $oci->query("SELECT count(*) as total FROM tabel_kuliner WHERE tgl_dibuat = '$tgl'");
+            $kuliner = $oci->fetch_array($query1);
             $data[] = array('tgl'=> $tgl, 'jumlah'=>$kuliner['total']);
         }
         ?>

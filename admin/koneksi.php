@@ -15,11 +15,22 @@ class oci {
 	function query($sql)
 	{
 		$this->query = oci_parse($this->koneksi, $sql) or die(oci_error());
-		return oci_execute($this->query);
+		oci_execute($this->query);
+		return $this->query;
+	}
+
+	function getQuery()
+	{
+		return $this->query;
 	}
 
 	function fetch_array()
 	{
 		return oci_fetch_array($this->query);
+	}
+
+	function getKoneksi() 
+	{
+		return $this->koneksi;
 	}
 }

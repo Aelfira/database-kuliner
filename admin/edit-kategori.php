@@ -1,11 +1,12 @@
 <?php 
-include "header.php";
+include_once "header.php";
 ?>
 <?php 
-include 'koneksi.php';
+include_once 'koneksi.php';
+$oci = new oci;
 $id = $_GET['id'];
-$query = mysql_query("SELECT * FROM tabel_kategori WHERE id_kategori = '$id'") or die(mysql_error());
-$kuliner = mysql_fetch_array($query);
+$query = $oci->query("SELECT * FROM tabel_kategori WHERE id_kategori = '$id'");
+$kuliner = $oci->fetch_array($query);
 ?>  
 <div class="content">
     <div class="container-fluid">
@@ -25,5 +26,5 @@ $kuliner = mysql_fetch_array($query);
     </div>
 </div>
 <?php 
-include "footer.php";
+include_once "footer.php";
 ?>

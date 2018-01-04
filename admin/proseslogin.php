@@ -1,9 +1,10 @@
 <?php 
-include 'koneksi.php';
+include_once 'koneksi.php';
 $username = $_POST['username'];
 $password = md5($_POST['password']);
-$query = mysql_query("SELECT * FROM admin WHERE username='$username' AND password='$password'") or die(mysql_error());
-if(mysql_fetch_row($query) > 0) {
+$oci = new oci;
+$query = $oci->query("SELECT * FROM admin WHERE username='$username' AND password='$password'");
+if($oci->fetch_array($query)) {
 	session_start();
 	$_SESSION['admin'] = $username;
 	header("location: index.php");

@@ -1,5 +1,5 @@
 <?php 
-include "header.php";
+include_once "header.php";
 ?>
         <div class="content">
             <div class="container-fluid">
@@ -9,10 +9,11 @@ include "header.php";
             <th>No</th><th>Nama</th><th>Email</th><th>Aksi</th>
         </tr>
         <?php
-        include "koneksi.php";
-        $query = mysql_query("SELECT * FROM tabel_tamu ") or die(mysql_error());
+        include_once "koneksi.php";
+        $oci = new oci;
+        $query = $oci->query("SELECT * FROM tabel_tamu ");
         $no = 0;
-        while($data = mysql_fetch_array($query)) {
+        while($data = $oci->fetch_array($query)) {
             $no++;
         ?> 
         <tr><td><?= $no ?></td><td><?= $data['nama'] ?></td><td><?= $data['email'] ?></td><td><a href="detil-krisar.php?id=<?= $data['id_tamu'] ?>" class="btn btn-info"><i class="fa fa-lg fa-file"></i></a><a href="hapus-krisar.php?id=<?= $data['id_tamu'] ?>" class="btn btn-small btn-danger"><i class="fa fa-lg fa-trash"></i></a></td></tr>
@@ -25,5 +26,5 @@ include "header.php";
         </div>
 
 <?php 
-include "footer.php";
+include_once "footer.php";
 ?>

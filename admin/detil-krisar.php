@@ -1,8 +1,9 @@
 <?php 
-include 'koneksi.php';
-include "header.php";
-$query = mysql_query("SELECT * FROM tabel_tamu WHERE id_tamu='$_GET[id]'") or die(mysql_error());
-$krisar =  mysql_fetch_array($query);
+include_once 'koneksi.php';
+include_once "header.php";
+$oci = new oci;
+$query = $oci->query("SELECT * FROM tabel_tamu WHERE id_tamu='$_GET[id]'");
+$krisar =  $oci->fetch_array($query);
 ?>
     <div class="content">
         <div class="container-fluid">
@@ -22,5 +23,5 @@ $krisar =  mysql_fetch_array($query);
     </div>
 
 <?php 
-include "footer.php";
+include_once "footer.php";
 ?>

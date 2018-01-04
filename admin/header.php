@@ -1,4 +1,5 @@
 <?php 
+$url = 'http://localhost/database-kuliner';
 session_start();
 if(!isset($_SESSION['admin']))
 {
@@ -51,14 +52,14 @@ if(!isset($_SESSION['admin']))
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="<?= $url ?>/admin" class="simple-text">
                     ADMIN
                 </a>
             </div>
 
             <ul class="nav">
                 <li>
-                    <a href="index.php">
+                    <a href="<?= $url ?>">
                         <p><i class="fa fa-dashboard"></i>
                         Dashboard</p>
                     </a>
@@ -106,7 +107,7 @@ if(!isset($_SESSION['admin']))
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
+                <a class="navbar-brand" href="<?= $url ?>/admin">Dashboard</a>
             </div>
             <div class="collapse navbar-collapse">
 
